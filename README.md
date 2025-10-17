@@ -1,6 +1,7 @@
 # terraform-api-lambda
 
 terraform code to deploy serverless application with lambda and api gateway
+![lambda serverless](https://github.com/user-attachments/assets/a138cd36-be60-4f5f-8828-ba51577f37ee)
 
 ## Overview
 
