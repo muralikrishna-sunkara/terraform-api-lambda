@@ -1,0 +1,43 @@
+# 1. Get your API endpoint
+API_ENDPOINT=$(terraform output -raw api_endpoint)
+
+# 2. Copy any test command above and run it
+# 3. Save the returned ID for testing other operations
+
+1. POST - Create Item
+curl -X POST "$API_ENDPOINT/items" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "MacBook Pro",
+    "description": "14-inch laptop",
+    "price": 1999.99,
+    "quantity": 5
+  }'
+
+Response: HTTP 201 with item ID
+
+  2. GET - List All Items
+curl -X GET "$API_ENDPOINT/items" \
+  -H "Content-Type: application/json"
+
+Response: HTTP 200 with all items
+
+  3. GET - Specific Item by ID
+curl -X GET "$API_ENDPOINT/items/550e8400-e29b-41d4-a716-446655440000"
+
+Response: HTTP 200 or 404 if not found
+
+4. PUT - Update Item
+curl -X PUT "$API_ENDPOINT/items/550e8400-e29b-41d4-a716-446655440000" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Updated Name",
+    "price": 2299.99,
+    "quantity": 3
+  }'
+Response: HTTP 200 with updated item
+
+5. DELETE - Remove Item
+curl -X DELETE "$API_ENDPOINT/items/550e8400-e29b-41d4-a716-446655440000"
+
+Response: HTTP 200 with success message

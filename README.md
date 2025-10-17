@@ -85,6 +85,41 @@ After running `terraform apply`, the output will include:
 - API Gateway endpoint URL
 - Lambda function name/ARN
 
+## Testing the API
+
+Once deployed, you can test your API Gateway endpoint using tools like `curl` or Postman.
+
+**Example:**
+
+Assuming your API Gateway endpoint output is:
+```
+https://<api-id>.execute-api.<region>.amazonaws.com/prod/hello
+```
+
+You can test with:
+
+```bash
+curl -X GET https://<api-id>.execute-api.<region>.amazonaws.com/prod/hello
+```
+
+**Expected response:**
+```json
+{
+  "statusCode": 200,
+  "body": "Hello from Lambda!"
+}
+```
+
+Replace `<api-id>` and `<region>` with the values from your Terraform outputs.
+
+For POST requests (if your Lambda supports it):
+
+```bash
+curl -X POST https://<api-id>.execute-api.<region>.amazonaws.com/prod/hello \
+  -H "Content-Type: application/json" \
+  -d '{"key": "value"}'
+```
+
 ## Clean Up
 
 To destroy all resources created by this Terraform configuration:
